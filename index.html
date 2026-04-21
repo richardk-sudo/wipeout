@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wipeout</title>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0f;
+    --surface: #13131a;
+    --surface2: #1c1c27;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --text: #f0f0f5;
+    --muted: rgba(240,240,245,0.45);
+    --accent: #f5a623;
+    --accent2: #e85d75;
+    --green: #2dd98f;
+    --red: #e85d75;
+    --radius: 14px;
+  }
+  html, body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 10%, rgba(245,166,35,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 90%, rgba(232,93,117,0.07) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .container { position: relative; z-index: 1; width: 100%; max-width: 560px; }
+
+  /* START SCREEN */
+  #start-screen { text-align: center; }
+  .logo {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(72px, 18vw, 110px);
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+  .tagline { font-size: 15px; color: var(--muted); margin-bottom: 2.5rem; letter-spacing: 0.5px; }
+  .rules-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 1.25rem; padding: 0; overflow: hidden; }
+  .rule-row {
+    display: flex;
+    gap: 14px;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .rule-row:last-child { border-bottom: none; }
+  .rule-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    width: 24px;
+    text-align: center;
+  }
+  .rule-content { flex: 1; }
+  .rule-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; font-family: 'Courier New', Courier, monospace; }
+  .rule-desc { font-size: 13px; color: var(--muted); line-height: 1.55; font-family: 'Courier New', Courier, monospace; }
+  .action-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: white;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .action-btn:hover { opacity: 0.9; }
+  .action-btn:active { transform: scale(0.98); }
+
+  /* QUIZ SCREEN */
+  #quiz-screen { display: none; }
+  #quiz-screen.active { display: block; }
+  .hud {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  .streak-display { line-height: 1; }
+  .streak-num {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 52px;
+    color: var(--accent);
+    letter-spacing: 2px;
+  }
+  .streak-lbl { font-size: 12px; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; }
+  .hud-right { text-align: right; }
+  .diff-pill {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 99px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: inline-block;
+  }
+  .diff-easy   { background: rgba(45,217,143,0.15); color: #2dd98f; border: 1px solid rgba(45,217,143,0.3); }
+  .diff-medium { background: rgba(245,166,35,0.15);  color: #f5a623; border: 1px solid rgba(245,166,35,0.3); }
+  .diff-hard   { background: rgba(232,93,117,0.15);  color: #e85d75; border: 1px solid rgba(232,93,117,0.3); }
+  .diff-expert { background: rgba(180,60,255,0.15);  color: #c46fff; border: 1px solid rgba(180,60,255,0.3); }
+  .q-counter { font-size: 12px; color: var(--muted); }
+  .timer-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+  .timer-track {
+    flex: 1;
+    height: 4px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .timer-fill { height: 100%; border-radius: 4px; transition: width 1s linear, background-color 0.5s; }
+  .timer-count {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 22px;
+    letter-spacing: 1px;
+    min-width: 24px;
+    text-align: right;
+    color: #2dd98f;
+    transition: color 0.5s;
+    line-height: 1;
+  }
+  .question-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .q-ghost { font-size: 17px; font-weight: 500; line-height: 1.5; color: transparent; width: 100%; user-select: none; pointer-events: none; }
+  .q-typed { font-size: 17px; font-weight: 500; line-height: 1.5; color: var(--text); position: absolute; top: 1.75rem; left: 1.75rem; right: 1.75rem; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .cursor { display: inline-block; width: 2px; height: 1em; background: rgba(240,240,245,0.7); margin-left: 2px; vertical-align: text-bottom; animation: blink 0.7s step-end infinite; }
+  @keyframes fadeSlideUp { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+  .opt-btn.reveal-in { animation: fadeSlideUp 0.3s ease both; }
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .opt-btn {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 15px 20px;
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .opt-letter { font-size: 12px; font-weight: 600; color: var(--muted); width: 20px; flex-shrink: 0; }
+  .opt-btn:hover:not(:disabled) { background: var(--surface2); border-color: rgba(255,255,255,0.25); }
+  .opt-btn:active:not(:disabled) { transform: scale(0.99); }
+  @keyframes flash-btn {
+    0%   { background: rgba(45,217,143,0.6); border-color: #2dd98f; }
+    100% { background: rgba(45,217,143,0.25); border-color: #2dd98f; }
+  }
+  .opt-btn.correct { background: rgba(45,217,143,0.25); border: 2px solid #2dd98f; color: #2dd98f; font-weight: 600; animation: flash-btn 2s ease-out forwards; }
+  .opt-btn.correct .opt-letter { color: var(--green); }
+  @keyframes flash-wrong {
+    0%   { background: rgba(232,93,117,0.5); border-color: #e85d75; }
+    100% { background: rgba(232,93,117,0.12); border-color: #e85d75; }
+  }
+  .opt-btn.wrong { background: rgba(232,93,117,0.12); border: 2px solid #e85d75; color: #e85d75; font-weight: 600; animation: flash-wrong 0.8s ease-out forwards; }
+  .opt-btn.wrong .opt-letter { color: #e85d75; }
+  .opt-btn.reveal .opt-letter { color: var(--green); }
+  .opt-btn.timeout-reveal { background: rgba(245,166,35,0.08); border-color: rgba(245,166,35,0.5); color: var(--accent); }
+
+  /* RESULT SCREEN */
+
+  #result-screen { display: none; text-align: center; }
+  .result-pre { font-size: 16px; color: var(--text); margin-bottom: 0.25rem; opacity: 0.7; }
+  .result-score {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(80px, 20vw, 120px);
+    color: var(--accent);
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .result-sub { font-size: 15px; color: var(--muted); margin-bottom: 1.5rem; }
+  .result-msg { font-size: 16px; line-height: 1.65; color: var(--text); margin-bottom: 1.5rem; padding: 0 0.5rem; }
+  .end-reason {
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .end-reason.wrong   { background: rgba(232,93,117,0.1); border: 1px solid rgba(232,93,117,0.25); color: #f09aaa; }
+  .end-reason.timeout {
+    background: rgba(245,166,35,0.12);
+    border: 2px solid rgba(245,166,35,0.5);
+    color: #f5c878;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .timeout-icon { font-size: 36px; margin-bottom: 0.5rem; }
+  .timeout-heading {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 32px;
+    letter-spacing: 1px;
+    color: #f5a623;
+    margin-bottom: 0.4rem;
+  }
+  .timeout-body { font-size: 14px; color: #f5c878; line-height: 1.6; }
+  .end-reason.perfect { background: rgba(45,217,143,0.1);  border: 1px solid rgba(45,217,143,0.25);  color: #2dd98f; }
+  .end-reason strong { display: block; margin-bottom: 8px; font-weight: 600; font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div id="start-screen">
+    <div class="logo">WIPEOUT</div>
+    <p class="tagline">One wrong answer and you're out. How far can you go?</p>
+    <div class="rules-card">
+      <div class="rule-row">
+        <div class="rule-icon">🔗</div>
+        <div class="rule-content">
+          <div class="rule-title">How to play</div>
+          <div class="rule-desc">The last letter of a correct answer gives you the first letter of the next correct answer. All three answer options share the same starting letter — so you always know which letter you're working with!</div>
+        </div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-icon">📋</div>
+        <div class="rule-content">
+          <div class="rule-title">10 questions, one shot</div>
+          <div class="rule-desc">You'll face 10 geography questions with 3 options each. There are no second chances — the game ends the moment you get one wrong.</div>
+        </div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-icon">⏱</div>
+        <div class="rule-content">
+          <div class="rule-title">10 seconds per question</div>
+          <div class="rule-desc">If the timer hits zero before you answer, the game ends immediately!</div>
+        </div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-icon">📈</div>
+        <div class="rule-content">
+          <div class="rule-title">Difficulty increases as you go</div>
+          <div class="rule-desc">Questions start Easy and get progressively harder. By question 9 you'll be in Expert territory — expect questions that will genuinely test you.</div>
+        </div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-icon">🏆</div>
+        <div class="rule-content">
+          <div class="rule-title">Your goal</div>
+          <div class="rule-desc">Answer all 10 questions correctly within the time limit. Most people don't make it past question 7 — can you go all the way?</div>
+        </div>
+      </div>
+    </div>
+    <button class="action-btn" onclick="startGame()">START PLAYING</button>
+  </div>
+
+  <div id="quiz-screen">
+    <div class="hud">
+      <div class="streak-display">
+        <div class="streak-num" id="streak-num">0</div>
+        <div class="streak-lbl">Streak</div>
+      </div>
+      <div class="hud-right">
+        <div class="diff-pill diff-easy" id="diff-pill">Easy</div>
+        <div class="q-counter" id="q-counter">Question 1 of 10</div>
+      </div>
+    </div>
+    <div class="timer-wrap">
+      <div class="timer-track">
+        <div class="timer-fill" id="timer-fill" style="width:100%;background-color:#2dd98f"></div>
+      </div>
+      <div class="timer-count" id="timer-count">10</div>
+    </div>
+    <div class="question-card">
+      <div class="q-ghost" id="q-ghost"></div>
+      <div class="q-typed" id="q-text"></div>
+    </div>
+    <div class="options" id="options"></div>
+  </div>
+
+  <div id="result-screen">
+    <div class="result-pre">You answered</div>
+    <div class="result-score" id="result-score">0</div>
+    <div class="result-sub" id="result-sub"></div>
+    <div class="result-msg" id="result-msg"></div>
+    <div class="end-reason" id="end-reason"></div>
+    <button class="action-btn" onclick="startGame()">PLAY AGAIN</button>
+  </div>
+
+</div>
+<script>
+const TIMER = 10;
+const LETTERS = ['A','B','C'];
+const DIFF_ORDER = ['Easy','Medium','Hard','Expert'];
+const DIFF_CLS = { Easy: 'diff-easy', Medium: 'diff-medium', Hard: 'diff-hard', Expert: 'diff-expert' };
+
+const QUESTIONS = [
+  { q: "What is the capital city of the USA?", opts: ["Wisconsin","Wyoming","Washington"], ans: 2, diff: "Easy" },
+  { q: "Which of these is a major port city in western France?", opts: ["Niamey","Nice","Nantes"], ans: 2, diff: "Easy" },
+  { q: "Which of these is the world's largest hot desert?", opts: ["Sonoran","Sinai","Sahara"], ans: 2, diff: "Easy" },
+  { q: "Which of these is the longest river in South America?", opts: ["Andes","Atacama","Amazon"], ans: 2, diff: "Medium" },
+  { q: "Which Scandinavian country shares borders with both Sweden and Russia?", opts: ["Netherlands","Niger","Norway"], ans: 2, diff: "Medium" },
+  { q: "Which of these is the longest river in Asia?", opts: ["Yenisei","Yukon","Yangtze"], ans: 2, diff: "Medium" },
+  { q: "What is the name of the world's highest mountain?", opts: ["Etna","Elbrus","Everest"], ans: 2, diff: "Hard" },
+  { q: "Which of these is the capital city of Libya?", opts: ["Tunis","Tehran","Tripoli"], ans: 2, diff: "Hard" },
+  { q: "Which country owns the volcanically active island of Surtsey in the North Atlantic?", opts: ["Ireland","Israel","Iceland"], ans: 2, diff: "Expert" },
+  { q: "Which country has the world's oldest parliament, the Folketing, dating back to 1849?", opts: ["Dublin","Djibouti","Denmark"], ans: 2, diff: "Expert" }
+];
+
+let cur, streak, timerInterval, timeLeft, answered;
+let endReason, endQ, endChosen, endTimeoutQ;
+let questions;
+
+function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+function startGame() {
+  questions = [...QUESTIONS];
+  cur = 0; streak = 0; answered = false;
+  endReason = null; endQ = null; endChosen = null;
+  clearTimer();
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('result-screen').style.display = 'none';
+  document.getElementById('quiz-screen').className = 'active';
+  showQuestion();
+}
+
+function clearTimer() {
+  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+}
+
+function resetTimerBar() {
+  const fill = document.getElementById('timer-fill');
+  fill.style.transition = 'none';
+  fill.style.width = '100%';
+  fill.style.backgroundColor = '#2dd98f';
+  document.getElementById('timer-count').style.color = '#2dd98f';
+  document.getElementById('timer-count').textContent = TIMER;
+  fill.getBoundingClientRect();
+  fill.style.transition = 'width 1s linear, background-color 0.5s';
+}
+
+function updateTimerBar(t) {
+  const fill = document.getElementById('timer-fill');
+  const count = document.getElementById('timer-count');
+  const color = t > 6 ? '#2dd98f' : t > 3 ? '#f5a623' : '#e85d75';
+  fill.style.width = (t / TIMER * 100) + '%';
+  fill.style.backgroundColor = color;
+  count.textContent = t;
+  count.style.color = color;
+}
+
+function startTimer() {
+  timeLeft = TIMER; answered = false;
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerBar(timeLeft);
+    if (timeLeft <= 0) { clearTimer(); handleTimeout(); }
+  }, 1000);
+}
+
+function typeQuestion(text, el, onDone) {
+  el.innerHTML = '<span class="cursor"></span>';
+  let i = 0;
+  const cursor = el.querySelector('.cursor');
+  const interval = setInterval(() => {
+    el.insertBefore(document.createTextNode(text[i]), cursor);
+    i++;
+    if (i >= text.length) {
+      clearInterval(interval);
+      setTimeout(() => { cursor.remove(); if (onDone) onDone(); }, 200);
+    }
+  }, Math.min(52, 3600 / text.length));
+}
+
+function showQuestion() {
+  const q = questions[cur];
+  const pill = document.getElementById('diff-pill');
+  pill.textContent = q.diff;
+  pill.className = 'diff-pill ' + DIFF_CLS[q.diff];
+  document.getElementById('streak-num').textContent = streak;
+  document.getElementById('q-counter').textContent = `Question ${cur + 1} of ${questions.length}`;
+  resetTimerBar();
+
+  document.getElementById('q-ghost').textContent = q.q;
+  const qEl = document.getElementById('q-text');
+  qEl.innerHTML = '';
+
+  const opts = document.getElementById('options');
+  opts.innerHTML = '';
+  q.opts.forEach((o, i) => {
+    const b = document.createElement('button');
+    b.className = 'opt-btn';
+    b.style.visibility = 'hidden';
+    b.innerHTML = `<span class="opt-letter">${LETTERS[i]}</span>${o}`;
+    b.onclick = () => pick(i);
+    opts.appendChild(b);
+  });
+
+  typeQuestion(q.q, qEl, null);
+  setTimeout(() => revealOptions(), 3000);
+}
+
+function revealOptions() {
+  const btns = document.querySelectorAll('.opt-btn');
+  btns.forEach((b, i) => {
+    b.style.visibility = '';
+    b.style.animationDelay = (i * 80) + 'ms';
+    b.classList.add('reveal-in');
+  });
+  const totalDelay = btns.length * 80 + 300;
+  setTimeout(startTimer, totalDelay);
+}
+
+function pick(i) {
+  if (answered) return;
+  answered = true; clearTimer();
+  const q = questions[cur];
+  const btns = document.querySelectorAll('.opt-btn');
+  btns.forEach(b => { b.disabled = true; b.style.animationDelay = ''; b.style.opacity = ''; });
+  if (i === q.ans) {
+    btns[i].className = 'opt-btn correct';
+    streak++; cur++;
+    setTimeout(() => {
+      if (cur >= questions.length) { endReason = 'perfect'; showResult(); }
+      else showQuestion();
+    }, 2000);
+  } else {
+    btns[i].className = 'opt-btn wrong';
+    endReason = 'wrong'; endQ = q; endChosen = q.opts[i];
+    setTimeout(showResult, 900);
+  }
+}
+
+function handleTimeout() {
+  if (answered) return;
+  answered = true;
+  const q = questions[cur];
+  const btns = document.querySelectorAll('.opt-btn');
+  btns.forEach(b => { b.disabled = true; });
+  endReason = 'timeout'; endQ = q; endTimeoutQ = cur;
+  setTimeout(showResult, 900);
+}
+
+function getMsg(s) {
+  if (s >= 10) return "Perfect score — you answered every question correctly without a single mistake. Absolutely flawless.";
+  if (s >= 8)  return "So close to a perfect run! You clearly know your stuff — just a couple of questions stood in your way.";
+  if (s >= 6)  return "A strong streak — you pushed through into the harder questions before things got tight.";
+  if (s >= 3)  return "A decent run! The difficulty ramp caught you, but you showed solid geography knowledge.";
+  return "The clock is ruthless. Go again — you'll last longer once you know what's coming!";
+}
+
+function showResult() {
+  clearTimer();
+  document.getElementById('quiz-screen').className = '';
+  document.getElementById('result-screen').style.display = 'block';
+  document.getElementById('result-score').textContent = streak;
+  document.getElementById('result-sub').textContent = `question${streak === 1 ? '' : 's'} in a row`;
+  document.getElementById('result-msg').textContent = getMsg(streak);
+  const box = document.getElementById('end-reason');
+  if (endReason === 'perfect') {
+    box.className = 'end-reason perfect';
+    box.innerHTML = '<strong>Incredible!</strong>You got all 10 questions right. A truly perfect game.';
+  } else if (endReason === 'timeout') {
+    box.className = 'end-reason timeout';
+    box.innerHTML = `<div class="timeout-icon">⏱</div><div class="timeout-heading">Time's Up!</div><div class="timeout-body">You ran out of time on question ${endTimeoutQ + 1}.<br>Your streak ends at <strong style="color:#f5a623">${streak}</strong>.</div>`;
+  } else {
+    box.className = 'end-reason wrong';
+    box.innerHTML = `<strong>Wrong answer!</strong>${endQ.q}<br>You answered: <em>${endChosen}</em> but the correct answer is: <strong>${endQ.opts[endQ.ans]}</strong>`;
+  }
+}
+</script>
+</body>
+</html>
