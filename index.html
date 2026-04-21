@@ -418,35 +418,42 @@ body::before {
         <div class="rule-icon">📋</div>
         <div class="rule-content">
           <div class="rule-title">10 questions, one shot</div>
-          <div class="rule-desc" id="rule-desc-questions">You'll face 10 multiple choice geography questions against the clock. There are no second chances, the game ends the moment you get one wrong.</div>
-        </div>
-      </div>
-      <div class="rule-row">
-        <div class="rule-icon">📈</div>
-        <div class="rule-content">
-          <div class="rule-title">It's tough at the top</div>
-          <div class="rule-desc">Questions start Easy and get progressively harder. By question 9, you'll be in Expert territory so expect some trivia that will genuinely test your mettle!</div>
-        </div>
-      </div>
-      <div class="rule-row">
-        <div class="rule-icon">⏱</div>
-        <div class="rule-content">
-          <div class="rule-title">10 seconds per question</div>
-          <div class="rule-desc">If the timer hits zero before you answer, you're out!</div>
+          <div class="rule-desc" id="rule-desc-questions">10 multiple choice questions, 4 options each. One wrong answer and it's over — no second chances.</div>
         </div>
       </div>
       <div class="rule-row">
         <div class="rule-icon">🔗</div>
         <div class="rule-content">
           <div class="rule-title">The Wipeout Chain</div>
-          <div class="rule-desc">The LAST letter of a correct answer is the FIRST letter of the next correct answer. Two of the four answer options will start with it — simple to remember in theory, much harder under time pressure!</div>
+          <div class="rule-desc">The LAST letter of each correct answer is the FIRST letter of the next. On Easy and Medium questions, two of the four options start with that letter. On Hard questions, all four do — the chain stops being a hint and becomes the challenge.</div>
+        </div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-icon">⏱</div>
+        <div class="rule-content">
+          <div class="rule-title">The clock gets faster</div>
+          <div class="rule-desc">15 seconds for questions 1–4, 10 seconds for questions 5–7, just 5 seconds for the final 3. Run out of time and you're out.</div>
+        </div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-icon">📈</div>
+        <div class="rule-content">
+          <div class="rule-title">Three levels of difficulty</div>
+          <div class="rule-desc">Questions 1–4 are Easy, 5–7 are Medium, 8–10 are Hard. Early questions have obviously wrong options — later ones have plausible-sounding distractors that require real knowledge to dismiss.</div>
+        </div>
+      </div>
+      <div class="rule-row">
+        <div class="rule-icon">📖</div>
+        <div class="rule-content">
+          <div class="rule-title">Questions get harder to read</div>
+          <div class="rule-desc">Later questions are longer and more complex — harder to parse quickly when the clock is running down.</div>
         </div>
       </div>
       <div class="rule-row">
         <div class="rule-icon">🏆</div>
         <div class="rule-content">
           <div class="rule-title">Only the strong survive</div>
-          <div class="rule-desc">Answer all questions correctly within the time limit. Most people don't make it past question 7 — can you go all the way?</div>
+          <div class="rule-desc">Get all 10 right within the time limits and you've beaten the Wipeout. Most people don't make it past question 7 — can you go all the way?</div>
         </div>
       </div>
     </div>
@@ -471,7 +478,7 @@ body::before {
         <div class="timer-track">
           <div class="timer-fill" id="timer-fill" style="width:100%;background-color:#00e08a"></div>
         </div>
-        <div class="timer-count" id="timer-count" style="color:#00e08a">10</div>
+        <div class="timer-count" id="timer-count" style="color:#00e08a">15</div>
       </div>
     </div>
     <div class="question-card">
@@ -498,14 +505,18 @@ body::before {
 </div>
 <script>
 const TOPIC = "Geography";
-const TIMER = 10;
+function getTimer(questionIndex) {
+  if (questionIndex < 4) return 15;
+  if (questionIndex < 7) return 10;
+  return 5;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('topic-sub').textContent = `${TOPIC} Chain Quiz`;
-  document.getElementById('rule-desc-questions').textContent = `You'll face 10 multiple choice ${TOPIC.toLowerCase()} questions against the clock. There are no second chances, the game ends the moment you get one wrong.`;
+  document.getElementById('rule-desc-questions').textContent = `10 multiple choice ${TOPIC.toLowerCase()} questions, 4 options each. One wrong answer and it's over — no second chances.`;
 });
 const LETTERS = ['A','B','C','D'];
-const DIFF_CLS = { Easy: 'diff-easy', Medium: 'diff-medium', Hard: 'diff-hard', Expert: 'diff-expert' };
+const DIFF_CLS = { Easy: 'diff-easy', Medium: 'diff-medium', Hard: 'diff-hard' };
 
 const QUESTIONS = [
   { q: "What is the capital city of the USA?", opts: ["Wyoming","Paris","Washington","Madrid"], ans: 2, diff: "Easy" },
@@ -515,9 +526,9 @@ const QUESTIONS = [
   { q: "Which Scandinavian country shares borders with both Sweden and Russia?", opts: ["Sweden","Finland","Netherlands","Norway"], ans: 3, diff: "Medium" },
   { q: "Which of these is the longest river in Asia?", opts: ["Yangtze","Amazon","Mekong","Yenisei"], ans: 0, diff: "Medium" },
   { q: "What is the name of the world's highest mountain?", opts: ["K2","Kilimanjaro","Elbrus","Everest"], ans: 3, diff: "Hard" },
-  { q: "Which of these is the capital city of Libya?", opts: ["Cairo","Tripoli","Tunis","Algiers"], ans: 1, diff: "Hard" },
-  { q: "Which country owns the volcanically active island of Surtsey in the North Atlantic?", opts: ["Norway","Finland","Iceland","Ireland"], ans: 2, diff: "Expert" },
-  { q: "Which country has the world's oldest parliament, the Folketing, dating back to 1849?", opts: ["Finland","Denmark","Sweden","Djibouti"], ans: 1, diff: "Expert" }
+  { q: "Which of these is the capital city of Libya?", opts: ["Tunis","Tripoli","Tehran","Tbilisi"], ans: 1, diff: "Hard" },
+  { q: "Which country owns the volcanically active island of Surtsey?", opts: ["India","Indonesia","Iceland","Ireland"], ans: 2, diff: "Hard" },
+  { q: "Which country's parliament is known as the Folketing?", opts: ["Djibouti","Dominica","Dominican Republic","Denmark"], ans: 3, diff: "Hard" }
 ];
 
 let cur, streak, timerInterval, timeLeft, answered;
@@ -539,29 +550,31 @@ function clearTimer() {
   if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
 }
 
-function resetTimerBar() {
+function resetTimerBar(t) {
   const fill = document.getElementById('timer-fill');
   fill.style.transition = 'none';
   fill.style.width = '100%';
   fill.style.backgroundColor = '#00e08a';
   document.getElementById('timer-count').style.color = '#00e08a';
-  document.getElementById('timer-count').textContent = TIMER;
+  document.getElementById('timer-count').textContent = t;
   fill.getBoundingClientRect();
   fill.style.transition = 'width 1s linear, background-color 0.5s';
 }
 
 function updateTimerBar(t) {
+  const total = getTimer(cur);
   const fill = document.getElementById('timer-fill');
   const count = document.getElementById('timer-count');
-  const color = t > 6 ? '#00e08a' : t > 3 ? '#f0a500' : '#ff3d5a';
-  fill.style.width = (t / TIMER * 100) + '%';
+  const color = t > total * 0.6 ? '#00e08a' : t > total * 0.3 ? '#f0a500' : '#ff3d5a';
+  fill.style.width = (t / total * 100) + '%';
   fill.style.backgroundColor = color;
   count.textContent = t;
   count.style.color = color;
 }
 
 function startTimer() {
-  timeLeft = TIMER; answered = false;
+  const t = getTimer(cur);
+  timeLeft = t; answered = false;
   timerInterval = setInterval(() => {
     timeLeft--;
     updateTimerBar(timeLeft);
@@ -593,7 +606,7 @@ function showQuestion() {
   pill.className = 'diff-pill ' + DIFF_CLS[q.diff];
   document.getElementById('streak-num').textContent = streak;
   document.getElementById('q-counter').textContent = `Question ${cur + 1} of ${questions.length}`;
-  resetTimerBar();
+  resetTimerBar(getTimer(cur));
 
   document.getElementById('next-letter-wrap').innerHTML = '';
   document.getElementById('q-ghost').textContent = q.q;
