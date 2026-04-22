@@ -61,8 +61,8 @@ body::before {
   letter-spacing: 6px;
   line-height: 1;
   color: var(--gold);
-  text-shadow: 0 0 60px rgba(240,165,0,0.4), 0 2px 0 rgba(0,0,0,0.5);
   display: block;
+  margin-bottom: 0.5rem;
 }
 
 .logo-sub {
@@ -552,7 +552,7 @@ function selectTopic(btn, topic) {
   btn.classList.add('selected');
   selectedTopic = topic;
   document.getElementById('topic-sub').textContent = `${topic} Quiz`;
-  setTimeout(() => startGame(), 500);
+  setTimeout(() => startGame(), 2000);
 }
 
 let cur, streak, timerInterval, timeLeft, answered;
