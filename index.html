@@ -71,7 +71,7 @@ body::before {
   font-weight: 600;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--text);
   margin-bottom: 2.5rem;
 }
 
@@ -103,27 +103,9 @@ body::before {
 .rule-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; width: 22px; text-align: center; }
 .rule-content { flex: 1; }
 .rule-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: 0.5px; color: var(--text); margin-bottom: 3px; }
-.rule-desc { font-size: 20px; color: var(--muted); line-height: 1.6; }
+.rule-desc { font-size: 20px; color: var(--text); line-height: 1.6; }
 
-.start-btn {
-  width: 100%;
-  padding: 18px;
-  background: var(--blue);
-  border: none;
-  border-radius: var(--radius);
-  font-family: var(--font-display);
-  font-size: 31px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: white;
-  cursor: pointer;
-  transition: background 0.15s, transform 0.1s;
-  text-transform: uppercase;
-}
-.start-btn:hover { background: #2275ff; }
-.start-btn:active { transform: scale(0.99); }
-
-.topic-label { font-size: 15px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; text-align: center; }
+.topic-label { font-size: 15px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text); margin-bottom: 12px; text-align: center; }
 .topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 0; }
 .topic-btn {
   background: var(--panel);
@@ -546,13 +528,15 @@ const QUESTION_BANKS = {
 };
 
 let selectedTopic = null;
+let topicTimeout = null;
 
 function selectTopic(btn, topic) {
-  document.querySelectorAll('.topic-btn').forEach(b => { b.classList.remove('selected'); b.disabled = true; });
+  if (topicTimeout) { clearTimeout(topicTimeout); topicTimeout = null; }
+  document.querySelectorAll('.topic-btn').forEach(b => { b.classList.remove('selected'); b.disabled = false; });
   btn.classList.add('selected');
   selectedTopic = topic;
   document.getElementById('topic-sub').textContent = `${topic} Quiz`;
-  setTimeout(() => startGame(), 2000);
+  topicTimeout = setTimeout(() => startGame(), 2000);
 }
 
 let cur, streak, timerInterval, timeLeft, answered;
