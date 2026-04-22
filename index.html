@@ -123,6 +123,32 @@ body::before {
 .start-btn:hover { background: #2275ff; }
 .start-btn:active { transform: scale(0.99); }
 
+.topic-label { font-size: 15px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; text-align: center; }
+.topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 0; }
+.topic-btn {
+  background: var(--panel);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 18px 12px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  text-align: center;
+}
+.topic-btn:hover { background: var(--panel2); border-color: var(--blue); color: white; }
+.topic-btn:active { transform: scale(0.98); }
+@keyframes topic-flash {
+  0%   { background: var(--blue); border-color: var(--blue); color: white; transform: scale(1); }
+  40%  { background: var(--blue); border-color: var(--blue); color: white; transform: scale(1.04); }
+  70%  { background: var(--blue); border-color: var(--blue); transform: scale(1); }
+  100% { background: var(--blue); border-color: var(--blue); color: white; }
+}
+.topic-btn.selected { animation: topic-flash 0.5s ease forwards; border-color: var(--blue); }
+
 /* ── QUIZ SCREEN ── */
 #quiz-screen { display: none; }
 #quiz-screen.active { display: block; }
@@ -256,43 +282,7 @@ body::before {
 .opt-btn:hover:not(:disabled) .opt-letter { background: var(--blue); }
 .opt-btn:active:not(:disabled) { transform: scale(0.99); }
 
-@keyframes badge-in {
-  0%   { opacity: 0; transform: scale(0.8); }
-  20%  { opacity: 1; transform: scale(1.08); }
-  40%  { transform: scale(1); }
-  75%  { opacity: 1; }
-  100% { opacity: 0; }
-}
-.next-letter-wrap {
-  min-height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-}
-.next-letter-badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--gold);
-  text-transform: uppercase;
-  animation: badge-in 1.5s ease forwards;
-  background: rgba(5,8,15,0.85);
-  padding: 12px 28px;
-  border-radius: 8px;
-  border: 1px solid rgba(240,165,0,0.4);
-}
-.next-letter-badge .badge-letter {
-  font-size: 52px;
-  line-height: 1;
-  color: var(--gold);
-  text-shadow: 0 0 20px var(--gold), 0 0 40px rgba(240,165,0,0.6);
-}
+
 @keyframes pop-correct {
   0%   { background: rgba(0,224,138,0.15); border-color: var(--green); transform: scale(1); opacity: 1; }
   25%  { background: rgba(0,224,138,0.5);  border-color: var(--green); transform: scale(1.03); opacity: 1; }
@@ -411,53 +401,45 @@ body::before {
     <div class="logo-wrap">
       <span class="logo">WIPEOUT</span>
     </div>
-    <p class="logo-sub" id="topic-sub">Geography Chain Quiz</p>
+    <p class="logo-sub" id="topic-sub">Wipeout Quiz</p>
     <div class="divider"></div>
     <div class="rules-card">
       <div class="rule-row">
-        <div class="rule-icon">📋</div>
+        <div class="rule-icon">📈</div>
         <div class="rule-content">
-          <div class="rule-title">10 questions, one shot</div>
-          <div class="rule-desc" id="rule-desc-questions">10 multiple choice questions, 4 options each. One wrong answer and it's over — no second chances.</div>
+          <div class="rule-title">How to play</div>
+          <div class="rule-desc" id="rule-desc-questions">Tackle 10 questions on your chosen topic, but watch out — they get harder as you go!</div>
         </div>
       </div>
       <div class="rule-row">
-        <div class="rule-icon">🔗</div>
+        <div class="rule-icon">🔘</div>
         <div class="rule-content">
-          <div class="rule-title">The Wipeout Chain</div>
-          <div class="rule-desc">The LAST letter of each correct answer is the FIRST letter of the next. On Easy and Medium questions, two of the four options start with that letter. On Hard questions, all four do — the chain stops being a hint and becomes the challenge.</div>
+          <div class="rule-title">Multiple choice</div>
+          <div class="rule-desc">Can you select the right answer from the 4 options as the pressure builds?</div>
         </div>
       </div>
       <div class="rule-row">
         <div class="rule-icon">⏱</div>
         <div class="rule-content">
-          <div class="rule-title">The clock gets faster</div>
-          <div class="rule-desc">15 seconds for questions 1–4, 10 seconds for questions 5–7, just 5 seconds for the final 3. Run out of time and you're out.</div>
+          <div class="rule-title">Beat the clock</div>
+          <div class="rule-desc">The more questions you answer, the less time you have.</div>
         </div>
       </div>
       <div class="rule-row">
-        <div class="rule-icon">📈</div>
+        <div class="rule-icon">💥</div>
         <div class="rule-content">
-          <div class="rule-title">Three levels of difficulty</div>
-          <div class="rule-desc">Questions 1–4 are Easy, 5–7 are Medium, 8–10 are Hard. Early questions have obviously wrong options — later ones have plausible-sounding distractors that require real knowledge to dismiss.</div>
-        </div>
-      </div>
-      <div class="rule-row">
-        <div class="rule-icon">📖</div>
-        <div class="rule-content">
-          <div class="rule-title">Questions get harder to read</div>
-          <div class="rule-desc">Later questions are longer and more complex — harder to parse quickly when the clock is running down.</div>
-        </div>
-      </div>
-      <div class="rule-row">
-        <div class="rule-icon">🏆</div>
-        <div class="rule-content">
-          <div class="rule-title">Only the strong survive</div>
-          <div class="rule-desc">Get all 10 right within the time limits and you've beaten the Wipeout. Most people don't make it past question 7 — can you go all the way?</div>
+          <div class="rule-title">Wipeout</div>
+          <div class="rule-desc">One wrong answer ... and you're wiped out.</div>
         </div>
       </div>
     </div>
-    <button class="start-btn" onclick="startGame()">START PLAYING</button>
+    <p class="topic-label">Choose your topic</p>
+    <div class="topic-grid">
+      <button class="topic-btn" onclick="selectTopic(this, 'Geography')">🌍 Geography</button>
+      <button class="topic-btn" onclick="selectTopic(this, 'Movies')">🎬 Movies</button>
+      <button class="topic-btn" onclick="selectTopic(this, 'Premier League')">⚽ Premier League</button>
+      <button class="topic-btn" onclick="selectTopic(this, 'Music')">🎵 Music</button>
+    </div>
   </div>
 
   <!-- QUIZ -->
@@ -486,7 +468,6 @@ body::before {
       <div class="q-typed" id="q-text"></div>
     </div>
     <div class="options" id="options"></div>
-    <div class="next-letter-wrap" id="next-letter-wrap"></div>
   </div>
 
   <!-- RESULT -->
@@ -499,44 +480,87 @@ body::before {
       <div class="result-msg" id="result-msg"></div>
     </div>
     <div class="end-reason" id="end-reason"></div>
-    <button class="play-again-btn" onclick="startGame()">PLAY AGAIN</button>
+    <button class="play-again-btn" onclick="goHome()">PLAY AGAIN</button>
   </div>
 
 </div>
 <script>
-const TOPIC = "Geography";
 function getTimer(questionIndex) {
   if (questionIndex < 4) return 15;
   if (questionIndex < 7) return 10;
   return 5;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('topic-sub').textContent = `${TOPIC} Chain Quiz`;
-  document.getElementById('rule-desc-questions').textContent = `10 multiple choice ${TOPIC.toLowerCase()} questions, 4 options each. One wrong answer and it's over — no second chances.`;
-});
 const LETTERS = ['A','B','C','D'];
 const DIFF_CLS = { Easy: 'diff-easy', Medium: 'diff-medium', Hard: 'diff-hard' };
 
-const QUESTIONS = [
-  { q: "What is the capital city of the USA?", opts: ["Wyoming","Paris","Washington","Madrid"], ans: 2, diff: "Easy" },
-  { q: "Which of these is a major port city in western France?", opts: ["Bordeaux","Nantes","Lyon","Niamey"], ans: 1, diff: "Easy" },
-  { q: "Which of these is the world's largest hot desert?", opts: ["Gobi","Kalahari","Sonoran","Sahara"], ans: 3, diff: "Easy" },
-  { q: "Which of these is the longest river in South America?", opts: ["Nile","Amazon","Andes","Congo"], ans: 1, diff: "Medium" },
-  { q: "Which Scandinavian country shares borders with both Sweden and Russia?", opts: ["Sweden","Finland","Netherlands","Norway"], ans: 3, diff: "Medium" },
-  { q: "Which of these is the longest river in Asia?", opts: ["Yangtze","Amazon","Mekong","Yenisei"], ans: 0, diff: "Medium" },
-  { q: "What is the name of the world's highest mountain?", opts: ["K2","Kilimanjaro","Elbrus","Everest"], ans: 3, diff: "Hard" },
-  { q: "Which of these is the capital city of Libya?", opts: ["Tunis","Tripoli","Tehran","Tbilisi"], ans: 1, diff: "Hard" },
-  { q: "Which country owns the volcanically active island of Surtsey?", opts: ["India","Indonesia","Iceland","Ireland"], ans: 2, diff: "Hard" },
-  { q: "Which country's parliament is known as the Folketing?", opts: ["Djibouti","Dominica","Dominican Republic","Denmark"], ans: 3, diff: "Hard" }
-];
+const QUESTION_BANKS = {
+  'Geography': [
+    { q: "What is the capital city of the USA?", opts: ["New York","Washington","Chicago","Los Angeles"], ans: 1, diff: "Easy" },
+    { q: "Which of these is a major port city in western France?", opts: ["Lyon","Rennes","Strasbourg","Nantes"], ans: 3, diff: "Easy" },
+    { q: "Which of these is the world's largest hot desert?", opts: ["Gobi","Kalahari","Sahara","Arabian"], ans: 2, diff: "Easy" },
+    { q: "Which of these is the longest river in South America?", opts: ["Orinoco","Amazon","Mississippi","Congo"], ans: 1, diff: "Medium" },
+    { q: "Which Scandinavian country shares borders with both Sweden and Russia?", opts: ["Denmark","Sweden","Finland","Norway"], ans: 3, diff: "Medium" },
+    { q: "Which of these is the longest river in Asia?", opts: ["Mekong","Ganges","Irrawaddy","Yangtze"], ans: 3, diff: "Medium" },
+    { q: "What is the name of the world's highest mountain?", opts: ["K2","Kangchenjunga","Lhotse","Everest"], ans: 3, diff: "Hard" },
+    { q: "Which medieval village in the Lunigiana region of Tuscany is known for its castle overlooking a river of the same name?", opts: ["Bagnara","Bagnone","Bagolino","Bagnoli"], ans: 1, diff: "Hard" },
+    { q: "Which country owns the volcanically active island of Surtsey?", opts: ["Norway","Greenland","Iceland","Faroe Islands"], ans: 2, diff: "Hard" },
+    { q: "Which country's parliament is known as the Folketing?", opts: ["Sweden","Norway","Finland","Denmark"], ans: 3, diff: "Hard" }
+  ],
+  'Movies': [
+    { q: "Which film features the line 'You're gonna need a bigger boat'?", opts: ["Jaws","Star Wars","The Poseidon Adventure","Titanic"], ans: 0, diff: "Easy" },
+    { q: "Who played Iron Man in the Marvel Cinematic Universe?", opts: ["Chris Evans","Robert Downey Jr.","Chris Hemsworth","Mark Ruffalo"], ans: 1, diff: "Easy" },
+    { q: "Which film franchise features wizards, Hogwarts and a boy with a lightning bolt scar?", opts: ["The Chronicles of Narnia","Percy Jackson","Harry Potter","The Golden Compass"], ans: 2, diff: "Easy" },
+    { q: "In which film does a young boy see dead people?", opts: ["Poltergeist","The Shining","The Sixth Sense","Insidious"], ans: 2, diff: "Easy" },
+    { q: "Which British actor played James Bond in Casino Royale (2006)?", opts: ["Pierce Brosnan","Timothy Dalton","Daniel Craig","Clive Owen"], ans: 2, diff: "Medium" },
+    { q: "What nationality is the director of Parasite, Bong Joon-ho?", opts: ["Japanese","Chinese","South Korean","Thai"], ans: 2, diff: "Medium" },
+    { q: "In which 1979 film does Sigourney Weaver battle an extraterrestrial creature aboard a spacecraft?", opts: ["The Thing","Predator","Event Horizon","Alien"], ans: 3, diff: "Medium" },
+    { q: "Which film won the first ever Academy Award for Best Picture?", opts: ["Citizen Kane","Wings","Casablanca","Gone with the Wind"], ans: 1, diff: "Hard" },
+    { q: "Which film won the Academy Award for Best Picture at the controversial 2017 ceremony where the wrong winner was announced?", opts: ["La La Land","Moonlight","Manchester by the Sea","Hell or High Water"], ans: 1, diff: "Hard" },
+    { q: "Which film director's debut feature was Following, made in 1998 for just £6,000?", opts: ["Danny Boyle","Christopher Nolan","Guy Ritchie","Edgar Wright"], ans: 1, diff: "Hard" }
+  ],
+  'Premier League': [
+    { q: "Which club has won the most Premier League titles?", opts: ["Chelsea","Arsenal","Liverpool","Manchester United"], ans: 3, diff: "Easy" },
+    { q: "Who is the Premier League's all-time top scorer?", opts: ["Wayne Rooney","Thierry Henry","Andrew Cole","Alan Shearer"], ans: 3, diff: "Easy" },
+    { q: "Which stadium is home to Brighton & Hove Albion?", opts: ["The Amex Stadium","The Vitality Stadium","The Gtech Stadium","The Emirates Stadium"], ans: 0, diff: "Easy" },
+    { q: "In what year was the Premier League founded?", opts: ["1985","1988","1992","1996"], ans: 2, diff: "Easy" },
+    { q: "Which club were the first to go a full Premier League season unbeaten?", opts: ["Chelsea","Manchester City","Arsenal","Liverpool"], ans: 2, diff: "Medium" },
+    { q: "Which club were relegated from the Premier League with a record low points tally of 11 in 2007/08?", opts: ["Bradford City","Derby County","Sunderland","Ipswich Town"], ans: 1, diff: "Medium" },
+    { q: "How many clubs have won the Premier League since it began in 1992?", opts: ["3","6","9","12"], ans: 1, diff: "Medium" },
+    { q: "What transfer fee did Manchester United pay Leeds United for Eric Cantona in 1992?", opts: ["£500,000","£1.2m","£2.5m","£5m"], ans: 1, diff: "Hard" },
+    { q: "During the 2015/16 season, who scored the fastest ever Premier League hat-trick in just 2 minutes 56 seconds?", opts: ["Salomon Rondon","Sergio Aguero","Sadio Mané","Shane Long"], ans: 2, diff: "Hard" },
+    { q: "Which Arsenal goalkeeper saved a Ruud van Nistelrooy penalty against Manchester United to keep the Invincibles' unbeaten run alive in 2003/04?", opts: ["David Seaman","Stuart Taylor","Manuel Almunia","Jens Lehmann"], ans: 3, diff: "Hard" }
+  ],
+  'Music': [
+    { q: "Which band released the album Definitely Maybe in 1994?", opts: ["Blur","Oasis","Pulp","The Verve"], ans: 1, diff: "Easy" },
+    { q: "Which city are The Beatles from?", opts: ["Manchester","Birmingham","Liverpool","London"], ans: 2, diff: "Easy" },
+    { q: "How many members were in the Spice Girls?", opts: ["3","4","5","6"], ans: 2, diff: "Easy" },
+    { q: "Name the Queen song which contains the lyric: 'Is this the real life? Is this just fantasy?'", opts: ["Bohemian Rhapsody","Don't Stop Me Now","We Are the Champions","Somebody to Love"], ans: 0, diff: "Easy" },
+    { q: "Who performed at the 2023 Super Bowl halftime show?", opts: ["Beyoncé","Rihanna","Taylor Swift","Lady Gaga"], ans: 1, diff: "Medium" },
+    { q: "Which country does singer Dua Lipa originally come from?", opts: ["Albania","Kosovo","Serbia","Croatia"], ans: 1, diff: "Medium" },
+    { q: "What was the best-selling UK single of the 1990s?", opts: ["Angels (Robbie Williams)","Candle in the Wind (Elton John)","Believe (Cher)","Never Ever (All Saints)"], ans: 1, diff: "Medium" },
+    { q: "At which UK festival did Beyoncé make history in 2011 as the first solo female headliner?", opts: ["Isle of Wight","Reading","T in the Park","Glastonbury"], ans: 3, diff: "Hard" },
+    { q: "In which year did Amy Winehouse release her album Back to Black?", opts: ["2004","2006","2008","2010"], ans: 1, diff: "Hard" },
+    { q: "What was the first UK number one single of the 21st century?", opts: ["Stan (Eminem)","Can We Fix It (Bob the Builder)","Pure and Simple (Hear'Say)","Rock DJ (Robbie Williams)"], ans: 1, diff: "Hard" }
+  ]
+};
+
+let selectedTopic = null;
+
+function selectTopic(btn, topic) {
+  document.querySelectorAll('.topic-btn').forEach(b => { b.classList.remove('selected'); b.disabled = true; });
+  btn.classList.add('selected');
+  selectedTopic = topic;
+  document.getElementById('topic-sub').textContent = `${topic} Quiz`;
+  setTimeout(() => startGame(), 3000);
+}
 
 let cur, streak, timerInterval, timeLeft, answered;
 let endReason, endQ, endChosen, endTimeoutQ;
 let questions, revealTimeout;
 
 function startGame() {
-  questions = [...QUESTIONS];
+  questions = [...(QUESTION_BANKS[selectedTopic] || [])];
   cur = 0; streak = 0; answered = false;
   endReason = null; endQ = null; endChosen = null;
   clearTimer();
@@ -608,7 +632,6 @@ function showQuestion() {
   document.getElementById('q-counter').textContent = `Question ${cur + 1} of ${questions.length}`;
   resetTimerBar(getTimer(cur));
 
-  document.getElementById('next-letter-wrap').innerHTML = '';
   document.getElementById('q-ghost').textContent = q.q;
   const qEl = document.getElementById('q-text');
   qEl.innerHTML = '';
@@ -658,22 +681,11 @@ function pick(i) {
   if (i === q.ans) {
     btns[i].className = 'opt-btn correct';
     btns[i].style.animation = 'pop-correct 0.5s ease forwards';
-    const lastChar = q.opts[i].slice(-1).toUpperCase();
     streak++; cur++;
-    setTimeout(() => {
-      if (cur < questions.length) {
-        const wrap = document.getElementById('next-letter-wrap');
-        wrap.innerHTML = '';
-        const badge = document.createElement('div');
-        badge.className = 'next-letter-badge';
-        badge.innerHTML = `NEXT LETTER<span class="badge-letter">${lastChar}</span>`;
-        wrap.appendChild(badge);
-      }
-    }, 2000);
     setTimeout(() => {
       if (cur >= questions.length) { endReason = 'perfect'; showResult(); }
       else showQuestion();
-    }, 3500);
+    }, 1500);
   } else {
     btns[i].className = 'opt-btn wrong';
     endReason = 'wrong'; endQ = q; endChosen = q.opts[i];
@@ -691,11 +703,19 @@ function handleTimeout() {
 }
 
 function getMsg(s) {
-  if (s >= 10) return `Perfect score — every question correct, every answer in the Wipeout chain. Absolutely flawless.`;
-  if (s >= 8)  return `So close to a perfect run! You clearly know your ${TOPIC.toLowerCase()} — just a couple of questions stood in your way.`;
+  if (s >= 10) return `Perfect score — every question correct, every timer beaten. Absolutely flawless.`;
+  if (s >= 8)  return `So close to a perfect run! You clearly know your ${selectedTopic.toLowerCase()} — just a couple of questions stood in your way.`;
   if (s >= 6)  return `A strong run — you pushed through into the harder questions before things got tight.`;
-  if (s >= 3)  return `A decent effort! The difficulty ramp caught you, but you showed solid ${TOPIC.toLowerCase()} knowledge.`;
+  if (s >= 3)  return `A decent effort! The difficulty ramp caught you, but you showed solid ${selectedTopic.toLowerCase()} knowledge.`;
   return `The clock is ruthless and the Wipeout is unforgiving. Go again — you'll last longer once you know what's coming!`;
+}
+
+function goHome() {
+  document.getElementById('result-screen').style.display = 'none';
+  document.getElementById('start-screen').style.display = 'block';
+  selectedTopic = null;
+  document.getElementById('topic-sub').textContent = 'Wipeout Quiz';
+  document.querySelectorAll('.topic-btn').forEach(b => { b.classList.remove('selected'); b.disabled = false; });
 }
 
 function showResult() {
@@ -709,7 +729,7 @@ function showResult() {
   const box = document.getElementById('end-reason');
   if (endReason === 'perfect') {
     box.className = 'end-reason perfect';
-    box.innerHTML = '<strong>Incredible!</strong>You answered all 10 questions correctly and kept the chain alive all the way to the end. A truly perfect game.';
+    box.innerHTML = '<strong>Incredible!</strong>You answered all 10 questions correctly and beat every timer. A truly perfect game.';
   } else if (endReason === 'timeout') {
     box.className = 'end-reason timeout';
     box.innerHTML = `<div class="timeout-icon">⏱</div><div class="timeout-heading">TIME'S UP!</div><div class="timeout-body">You ran out of time on question ${endTimeoutQ + 1}.<br>Your score: <strong style="color:var(--gold)">${streak}</strong></div>`;
