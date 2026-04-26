@@ -1,0 +1,64 @@
+{
+  "rounds": [
+    {
+      "name": "Round 1",
+      "questions": [
+        {"q": "What is the capital of France?", "opts": ["Paris","Perth","Prague","Panama City"], "ans": 0, "diff": "Easy"},
+        {"q": "What is the name of Homer Simpson's wife?", "opts": ["Lisa","Maggie","Marge","Patty"], "ans": 2, "diff": "Easy"},
+        {"q": "Which planet in our solar system is closest to the Sun?", "opts": ["Mercury","Venus","Mars","Earth"], "ans": 0, "diff": "Easy"},
+        {"q": "In which sport would you score a try?", "opts": ["Cricket","Rugby","Tennis","Golf"], "ans": 1, "diff": "Easy"},
+        {"q": "Who was the first person to perform a spacewalk, in 1965?", "opts": ["Yuri Gagarin","Neil Armstrong","Alexei Leonov","Buzz Aldrin"], "ans": 2, "diff": "Medium"},
+        {"q": "Which author created the fictional Belgian detective Hercule Poirot?", "opts": ["Arthur Conan Doyle","Agatha Christie","P.D. James","Ruth Rendell"], "ans": 1, "diff": "Medium"},
+        {"q": "What was Quentin Tarantino's debut feature film?", "opts": ["Pulp Fiction","Jackie Brown","Reservoir Dogs","Kill Bill"], "ans": 2, "diff": "Medium"},
+        {"q": "What was the Allied codename for the D-Day landings in Normandy in June 1944?", "opts": ["Operation Torch","Operation Market Garden","Operation Overlord","Operation Citadel"], "ans": 2, "diff": "Hard"},
+        {"q": "Name the Baroque composer who wrote The Four Seasons.", "opts": ["Bach","Handel","Telemann","Vivaldi"], "ans": 3, "diff": "Hard"},
+        {"q": "In which year did Watson and Crick publish their description of DNA's double helix structure?", "opts": ["1949","1953","1957","1962"], "ans": 1, "diff": "Hard"}
+      ]
+    },
+    {
+      "name": "Round 2",
+      "questions": [
+        {"q": "Which band recorded the song Bohemian Rhapsody?", "opts": ["Led Zeppelin","The Rolling Stones","Queen","The Who"], "ans": 2, "diff": "Easy"},
+        {"q": "Which is the largest continent by area?", "opts": ["Africa","Europe","North America","Asia"], "ans": 3, "diff": "Easy"},
+        {"q": "What is the name of the school Harry Potter attends?", "opts": ["Hogsmeade","Hufflepuff","Horcrux","Hogwarts"], "ans": 3, "diff": "Easy"},
+        {"q": "How many wives did Henry VIII have in total?", "opts": ["Four","Five","Six","Seven"], "ans": 2, "diff": "Easy"},
+        {"q": "In which country is the ancient Inca citadel of Machu Picchu located?", "opts": ["Bolivia","Ecuador","Chile","Peru"], "ans": 3, "diff": "Medium"},
+        {"q": "Which American city is widely regarded as the birthplace of jazz?", "opts": ["Chicago","Memphis","New York","New Orleans"], "ans": 3, "diff": "Medium"},
+        {"q": "In which decade was Doctor Who first broadcast on the BBC?", "opts": ["1950s","1960s","1970s","1980s"], "ans": 1, "diff": "Medium"},
+        {"q": "What is Usain Bolt's 100m world record time, set in Berlin in 2009?", "opts": ["9.54s","9.58s","9.63s","9.69s"], "ans": 1, "diff": "Hard"},
+        {"q": "How many Academy Awards did the 1959 epic film Ben-Hur win at the 1960 ceremony?", "opts": ["9","10","11","12"], "ans": 2, "diff": "Hard"},
+        {"q": "Name the Italian town where Leonardo da Vinci was born in 1452.", "opts": ["Florence","Milan","Rome","Vinci"], "ans": 3, "diff": "Hard"}
+      ]
+    },
+    {
+      "name": "Round 3",
+      "questions": [
+        {"q": "Who was the first person to walk on the Moon?", "opts": ["Yuri Gagarin","Buzz Aldrin","Neil Armstrong","John Glenn"], "ans": 2, "diff": "Easy"},
+        {"q": "How many players does each side have on the pitch in rugby union?", "opts": ["11","13","15","17"], "ans": 2, "diff": "Easy"},
+        {"q": "What is the name of the fairy in Peter Pan?", "opts": ["Wendy","Tiger Lily","Tinker Bell","Princess Aurora"], "ans": 2, "diff": "Easy"},
+        {"q": "What colour is a standard London double-decker bus?", "opts": ["Red","Blue","Green","Yellow"], "ans": 0, "diff": "Easy"},
+        {"q": "In which year did the French Revolution begin?", "opts": ["1776","1789","1799","1815"], "ans": 1, "diff": "Medium"},
+        {"q": "Which scientist is credited with discovering penicillin in 1928?", "opts": ["Louis Pasteur","Robert Koch","Joseph Lister","Alexander Fleming"], "ans": 3, "diff": "Medium"},
+        {"q": "Which country hosted the first modern Olympic Games in 1896?", "opts": ["France","Great Britain","United States","Greece"], "ans": 3, "diff": "Medium"},
+        {"q": "What is the maximum possible break a player can score in a single visit to the table in snooker?", "opts": ["132","140","147","155"], "ans": 2, "diff": "Hard"},
+        {"q": "What was the German codename for the invasion of the Soviet Union launched in June 1941?", "opts": ["Operation Citadel","Operation Sea Lion","Operation Typhoon","Operation Barbarossa"], "ans": 3, "diff": "Hard"},
+        {"q": "Name the country that has the longest coastline in the world.", "opts": ["Australia","Russia","Norway","Canada"], "ans": 3, "diff": "Hard"}
+      ]
+    },
+    {
+      "name": "Round 4",
+      "questions": [
+        {"q": "How many sides does a hexagon have?", "opts": ["Five","Six","Seven","Eight"], "ans": 1, "diff": "Easy"},
+        {"q": "What is the capital of Italy?", "opts": ["Rome","Milan","Florence","Naples"], "ans": 0, "diff": "Easy"},
+        {"q": "In which country is the Colosseum located?", "opts": ["Italy","Iceland","Indonesia","Ireland"], "ans": 0, "diff": "Easy"},
+        {"q": "What is the primary ingredient in guacamole?", "opts": ["Avocado","Mango","Tomato","Lime"], "ans": 0, "diff": "Easy"},
+        {"q": "From which country does the cheese Gouda originate?", "opts": ["Belgium","Denmark","Netherlands","Germany"], "ans": 2, "diff": "Medium"},
+        {"q": "In which modern-day country are the ruins of the ancient city of Babylon located?", "opts": ["Iran","Syria","Turkey","Iraq"], "ans": 3, "diff": "Medium"},
+        {"q": "What nationality was the composer Frédéric Chopin?", "opts": ["French","Austrian","Polish","Czech"], "ans": 2, "diff": "Medium"},
+        {"q": "How many Grand Slam singles titles did Pete Sampras win during his career?", "opts": ["10","12","14","16"], "ans": 2, "diff": "Hard"},
+        {"q": "In which year was Sputnik, the world's first artificial satellite, launched into orbit?", "opts": ["1953","1955","1957","1961"], "ans": 2, "diff": "Hard"},
+        {"q": "What is the approximate half-life of Carbon-14, the isotope used in radiocarbon dating?", "opts": ["1,200 years","5,730 years","14,000 years","50,000 years"], "ans": 1, "diff": "Hard"}
+      ]
+    }
+  ]
+}
