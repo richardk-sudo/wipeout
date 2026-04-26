@@ -433,7 +433,7 @@ body::before {
       </div>
     </div>
     <p class="topic-label">Choose your topic</p>
-    <div class="topic-grid" id="topic-grid"></div>
+    <div class="topic-grid" id="topic-grid" style="display:none;"></div>
     <p class="topic-label" id="gk-label" style="margin-top:1.5rem; display:none;">General knowledge rounds</p>
     <div class="topic-grid" id="gk-grid" style="display:none;"></div>
   </div>
@@ -545,7 +545,7 @@ async function loadAllSheets() {
             gkGrid.appendChild(btn);
           });
           gkGrid.style.display = 'grid';
-          gkLabel.style.display = 'block';
+          gkLabel.style.display = 'none';
         }
       }
     } catch(e) { /* gk-rounds.json optional — fail silently */ }
