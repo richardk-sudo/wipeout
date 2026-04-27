@@ -3,61 +3,691 @@
     {
       "name": "Round 1",
       "questions": [
-        {"q": "What is the capital of France?", "opts": ["Paris","Perth","Prague","Panama City"], "ans": 0, "diff": "Easy"},
-        {"q": "What is the name of Homer Simpson's wife?", "opts": ["Lisa","Maggie","Marge","Patty"], "ans": 2, "diff": "Easy"},
-        {"q": "Which planet in our solar system is closest to the Sun?", "opts": ["Mercury","Venus","Mars","Earth"], "ans": 0, "diff": "Easy"},
-        {"q": "In which sport would you score a try?", "opts": ["Cricket","Rugby","Tennis","Golf"], "ans": 1, "diff": "Easy"},
-        {"q": "Who was the first person to perform a spacewalk, in 1965?", "opts": ["Yuri Gagarin","Neil Armstrong","Alexei Leonov","Buzz Aldrin"], "ans": 2, "diff": "Medium"},
-        {"q": "Which author created the fictional Belgian detective Hercule Poirot?", "opts": ["Arthur Conan Doyle","Agatha Christie","P.D. James","Ruth Rendell"], "ans": 1, "diff": "Medium"},
-        {"q": "What was Quentin Tarantino's debut feature film?", "opts": ["Pulp Fiction","Jackie Brown","Reservoir Dogs","Kill Bill"], "ans": 2, "diff": "Medium"},
-        {"q": "What was the Allied codename for the D-Day landings in Normandy in June 1944?", "opts": ["Operation Torch","Operation Market Garden","Operation Overlord","Operation Citadel"], "ans": 2, "diff": "Hard"},
-        {"q": "Name the Baroque composer who wrote The Four Seasons.", "opts": ["Bach","Handel","Telemann","Vivaldi"], "ans": 3, "diff": "Hard"},
-        {"q": "In which year did Watson and Crick publish their description of DNA's double helix structure?", "opts": ["1949","1953","1957","1962"], "ans": 1, "diff": "Hard"}
+        {
+          "q": "What is the capital of France?",
+          "opts": [
+            "Paris",
+            "Perth",
+            "Prague",
+            "Panama City"
+          ],
+          "ans": 0,
+          "diff": "Easy"
+        },
+        {
+          "q": "How many sides does a hexagon have?",
+          "opts": [
+            "Five",
+            "Six",
+            "Seven",
+            "Eight"
+          ],
+          "ans": 1,
+          "diff": "Easy"
+        },
+        {
+          "q": "What colour is a standard London double-decker bus?",
+          "opts": [
+            "Red",
+            "Blue",
+            "Green",
+            "Yellow"
+          ],
+          "ans": 0,
+          "diff": "Easy"
+        },
+        {
+          "q": "What is the name of Homer Simpson's wife?",
+          "opts": [
+            "Lisa",
+            "Maggie",
+            "Marge",
+            "Patty"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "Who was the first person to perform a spacewalk, in 1965?",
+          "opts": [
+            "Yuri Gagarin",
+            "Neil Armstrong",
+            "Alexei Leonov",
+            "Buzz Aldrin"
+          ],
+          "ans": 2,
+          "diff": "Medium"
+        },
+        {
+          "q": "Which actress holds the record for the most Academy Award wins for Best Actress?",
+          "opts": [
+            "Meryl Streep",
+            "Katharine Hepburn",
+            "Cate Blanchett",
+            "Bette Davis"
+          ],
+          "ans": 1,
+          "diff": "Medium"
+        },
+        {
+          "q": "In which modern-day country did the Chernobyl nuclear disaster of 1986 occur?",
+          "opts": [
+            "Russia",
+            "Belarus",
+            "Kazakhstan",
+            "Ukraine"
+          ],
+          "ans": 3,
+          "diff": "Medium"
+        },
+        {
+          "q": "What is Usain Bolt's 100m world record time, set in Berlin in 2009?",
+          "opts": [
+            "9.54s",
+            "9.58s",
+            "9.63s",
+            "9.69s"
+          ],
+          "ans": 1,
+          "diff": "Hard"
+        },
+        {
+          "q": "Name the Baroque composer who wrote The Four Seasons.",
+          "opts": [
+            "Bach",
+            "Handel",
+            "Telemann",
+            "Vivaldi"
+          ],
+          "ans": 3,
+          "diff": "Hard"
+        },
+        {
+          "q": "In which year did Watson and Crick publish their description of DNA's double helix structure?",
+          "opts": [
+            "1949",
+            "1953",
+            "1957",
+            "1962"
+          ],
+          "ans": 1,
+          "diff": "Hard"
+        }
       ]
     },
     {
       "name": "Round 2",
       "questions": [
-        {"q": "Which band recorded the song Bohemian Rhapsody?", "opts": ["Led Zeppelin","The Rolling Stones","Queen","The Who"], "ans": 2, "diff": "Easy"},
-        {"q": "Which is the largest continent by area?", "opts": ["Africa","Europe","North America","Asia"], "ans": 3, "diff": "Easy"},
-        {"q": "What is the name of the school Harry Potter attends?", "opts": ["Hogsmeade","Hufflepuff","Horcrux","Hogwarts"], "ans": 3, "diff": "Easy"},
-        {"q": "How many wives did Henry VIII have in total?", "opts": ["Four","Five","Six","Seven"], "ans": 2, "diff": "Easy"},
-        {"q": "In which country is the ancient Inca citadel of Machu Picchu located?", "opts": ["Bolivia","Ecuador","Chile","Peru"], "ans": 3, "diff": "Medium"},
-        {"q": "Which American city is widely regarded as the birthplace of jazz?", "opts": ["Chicago","Memphis","New York","New Orleans"], "ans": 3, "diff": "Medium"},
-        {"q": "In which decade was Doctor Who first broadcast on the BBC?", "opts": ["1950s","1960s","1970s","1980s"], "ans": 1, "diff": "Medium"},
-        {"q": "What is Usain Bolt's 100m world record time, set in Berlin in 2009?", "opts": ["9.54s","9.58s","9.63s","9.69s"], "ans": 1, "diff": "Hard"},
-        {"q": "How many Academy Awards did the 1959 epic film Ben-Hur win at the 1960 ceremony?", "opts": ["9","10","11","12"], "ans": 2, "diff": "Hard"},
-        {"q": "Name the Italian town where Leonardo da Vinci was born in 1452.", "opts": ["Florence","Milan","Rome","Vinci"], "ans": 3, "diff": "Hard"}
+        {
+          "q": "Who wrote Romeo and Juliet?",
+          "opts": [
+            "Shakespeare",
+            "Dickens",
+            "Austen",
+            "Hardy"
+          ],
+          "ans": 0,
+          "diff": "Easy"
+        },
+        {
+          "q": "Name the largest ocean on Earth.",
+          "opts": [
+            "Pacific",
+            "Atlantic",
+            "Indian",
+            "Arctic"
+          ],
+          "ans": 0,
+          "diff": "Easy"
+        },
+        {
+          "q": "What is the name of Harry Potter's owl?",
+          "opts": [
+            "Hedwig",
+            "Fawkes",
+            "Buckbeak",
+            "Dobby"
+          ],
+          "ans": 0,
+          "diff": "Easy"
+        },
+        {
+          "q": "How many strings does a standard acoustic guitar have?",
+          "opts": [
+            "Four",
+            "Five",
+            "Six",
+            "Seven"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "From which country does the cheese Gouda originate?",
+          "opts": [
+            "Belgium",
+            "Denmark",
+            "Netherlands",
+            "Germany"
+          ],
+          "ans": 2,
+          "diff": "Medium"
+        },
+        {
+          "q": "In which US state is the crime drama Breaking Bad set?",
+          "opts": [
+            "Texas",
+            "Nevada",
+            "Arizona",
+            "New Mexico"
+          ],
+          "ans": 3,
+          "diff": "Medium"
+        },
+        {
+          "q": "What was Quentin Tarantino's debut feature film?",
+          "opts": [
+            "Pulp Fiction",
+            "Jackie Brown",
+            "Reservoir Dogs",
+            "Kill Bill"
+          ],
+          "ans": 2,
+          "diff": "Medium"
+        },
+        {
+          "q": "Name the strait separating Australia from Papua New Guinea.",
+          "opts": [
+            "Bass Strait",
+            "Timor Strait",
+            "Lombok Strait",
+            "Torres Strait"
+          ],
+          "ans": 3,
+          "diff": "Hard"
+        },
+        {
+          "q": "What was the German codename for the invasion of the Soviet Union launched in June 1941?",
+          "opts": [
+            "Operation Citadel",
+            "Operation Sea Lion",
+            "Operation Typhoon",
+            "Operation Barbarossa"
+          ],
+          "ans": 3,
+          "diff": "Hard"
+        },
+        {
+          "q": "What is the maximum possible break a player can score in a single visit to the table in snooker?",
+          "opts": [
+            "132",
+            "140",
+            "147",
+            "155"
+          ],
+          "ans": 2,
+          "diff": "Hard"
+        }
       ]
     },
     {
       "name": "Round 3",
       "questions": [
-        {"q": "Who was the first person to walk on the Moon?", "opts": ["Yuri Gagarin","Buzz Aldrin","Neil Armstrong","John Glenn"], "ans": 2, "diff": "Easy"},
-        {"q": "How many players does each side have on the pitch in rugby union?", "opts": ["11","13","15","17"], "ans": 2, "diff": "Easy"},
-        {"q": "What is the name of the fairy in Peter Pan?", "opts": ["Wendy","Tiger Lily","Tinker Bell","Princess Aurora"], "ans": 2, "diff": "Easy"},
-        {"q": "What colour is a standard London double-decker bus?", "opts": ["Red","Blue","Green","Yellow"], "ans": 0, "diff": "Easy"},
-        {"q": "In which year did the French Revolution begin?", "opts": ["1776","1789","1799","1815"], "ans": 1, "diff": "Medium"},
-        {"q": "Which scientist is credited with discovering penicillin in 1928?", "opts": ["Louis Pasteur","Robert Koch","Joseph Lister","Alexander Fleming"], "ans": 3, "diff": "Medium"},
-        {"q": "Which country hosted the first modern Olympic Games in 1896?", "opts": ["France","Great Britain","United States","Greece"], "ans": 3, "diff": "Medium"},
-        {"q": "What is the maximum possible break a player can score in a single visit to the table in snooker?", "opts": ["132","140","147","155"], "ans": 2, "diff": "Hard"},
-        {"q": "What was the German codename for the invasion of the Soviet Union launched in June 1941?", "opts": ["Operation Citadel","Operation Sea Lion","Operation Typhoon","Operation Barbarossa"], "ans": 3, "diff": "Hard"},
-        {"q": "Name the country that has the longest coastline in the world.", "opts": ["Australia","Russia","Norway","Canada"], "ans": 3, "diff": "Hard"}
+        {
+          "q": "Who was the first person to walk on the Moon?",
+          "opts": [
+            "Yuri Gagarin",
+            "Buzz Aldrin",
+            "Neil Armstrong",
+            "John Glenn"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "How many legs does a spider have?",
+          "opts": [
+            "Four",
+            "Six",
+            "Eight",
+            "Ten"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "In which country is the Colosseum located?",
+          "opts": [
+            "Italy",
+            "Iceland",
+            "Indonesia",
+            "Ireland"
+          ],
+          "ans": 0,
+          "diff": "Easy"
+        },
+        {
+          "q": "What is the name of the fairy in Peter Pan?",
+          "opts": [
+            "Wendy",
+            "Tiger Lily",
+            "Tinker Bell",
+            "Princess Aurora"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "In which country is the ancient rose-red city of Petra located?",
+          "opts": [
+            "Israel",
+            "Jordan",
+            "Egypt",
+            "Saudi Arabia"
+          ],
+          "ans": 1,
+          "diff": "Medium"
+        },
+        {
+          "q": "Which author created the fictional Belgian detective Hercule Poirot?",
+          "opts": [
+            "Arthur Conan Doyle",
+            "Agatha Christie",
+            "P.D. James",
+            "Ruth Rendell"
+          ],
+          "ans": 1,
+          "diff": "Medium"
+        },
+        {
+          "q": "Which country hosted the first modern Olympic Games in 1896?",
+          "opts": [
+            "France",
+            "Great Britain",
+            "United States",
+            "Greece"
+          ],
+          "ans": 3,
+          "diff": "Medium"
+        },
+        {
+          "q": "What was the Allied codename for the D-Day landings in Normandy in June 1944?",
+          "opts": [
+            "Operation Torch",
+            "Operation Market Garden",
+            "Operation Overlord",
+            "Operation Citadel"
+          ],
+          "ans": 2,
+          "diff": "Hard"
+        },
+        {
+          "q": "As of 2024, how many times has Brazil won the FIFA World Cup?",
+          "opts": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "ans": 1,
+          "diff": "Hard"
+        },
+        {
+          "q": "Which of the following elements did Marie Curie discover and name herself?",
+          "opts": [
+            "Radium",
+            "Curium",
+            "Francium",
+            "Polonium"
+          ],
+          "ans": 3,
+          "diff": "Hard"
+        }
       ]
     },
     {
       "name": "Round 4",
       "questions": [
-        {"q": "How many sides does a hexagon have?", "opts": ["Five","Six","Seven","Eight"], "ans": 1, "diff": "Easy"},
-        {"q": "What is the capital of Italy?", "opts": ["Rome","Milan","Florence","Naples"], "ans": 0, "diff": "Easy"},
-        {"q": "In which country is the Colosseum located?", "opts": ["Italy","Iceland","Indonesia","Ireland"], "ans": 0, "diff": "Easy"},
-        {"q": "What is the primary ingredient in guacamole?", "opts": ["Avocado","Mango","Tomato","Lime"], "ans": 0, "diff": "Easy"},
-        {"q": "From which country does the cheese Gouda originate?", "opts": ["Belgium","Denmark","Netherlands","Germany"], "ans": 2, "diff": "Medium"},
-        {"q": "In which modern-day country are the ruins of the ancient city of Babylon located?", "opts": ["Iran","Syria","Turkey","Iraq"], "ans": 3, "diff": "Medium"},
-        {"q": "What nationality was the composer Frédéric Chopin?", "opts": ["French","Austrian","Polish","Czech"], "ans": 2, "diff": "Medium"},
-        {"q": "How many Grand Slam singles titles did Pete Sampras win during his career?", "opts": ["10","12","14","16"], "ans": 2, "diff": "Hard"},
-        {"q": "In which year was Sputnik, the world's first artificial satellite, launched into orbit?", "opts": ["1953","1955","1957","1961"], "ans": 2, "diff": "Hard"},
-        {"q": "What is the approximate half-life of Carbon-14, the isotope used in radiocarbon dating?", "opts": ["1,200 years","5,730 years","14,000 years","50,000 years"], "ans": 1, "diff": "Hard"}
+        {
+          "q": "On which continent is Egypt located?",
+          "opts": [
+            "Asia",
+            "Europe",
+            "South America",
+            "Africa"
+          ],
+          "ans": 3,
+          "diff": "Easy"
+        },
+        {
+          "q": "How many wives did Henry VIII have in total?",
+          "opts": [
+            "Four",
+            "Five",
+            "Six",
+            "Seven"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "At what temperature does water boil at sea level?",
+          "opts": [
+            "80°C",
+            "90°C",
+            "100°C",
+            "120°C"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "In which sport would you perform a slam dunk?",
+          "opts": [
+            "Volleyball",
+            "Handball",
+            "Basketball",
+            "Netball"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "What nationality was the composer Frédéric Chopin?",
+          "opts": [
+            "French",
+            "Austrian",
+            "Polish",
+            "Czech"
+          ],
+          "ans": 2,
+          "diff": "Medium"
+        },
+        {
+          "q": "How many individual events make up a decathlon?",
+          "opts": [
+            "7",
+            "8",
+            "10",
+            "12"
+          ],
+          "ans": 2,
+          "diff": "Medium"
+        },
+        {
+          "q": "In which decade was Doctor Who first broadcast on the BBC?",
+          "opts": [
+            "1950s",
+            "1960s",
+            "1970s",
+            "1980s"
+          ],
+          "ans": 1,
+          "diff": "Medium"
+        },
+        {
+          "q": "How many symphonies did Ludwig van Beethoven compose?",
+          "opts": [
+            "7",
+            "8",
+            "9",
+            "11"
+          ],
+          "ans": 2,
+          "diff": "Hard"
+        },
+        {
+          "q": "In which year was Sputnik, the world's first artificial satellite, launched into orbit?",
+          "opts": [
+            "1953",
+            "1955",
+            "1957",
+            "1961"
+          ],
+          "ans": 2,
+          "diff": "Hard"
+        },
+        {
+          "q": "Name the country that has the longest coastline in the world.",
+          "opts": [
+            "Australia",
+            "Russia",
+            "Norway",
+            "Canada"
+          ],
+          "ans": 3,
+          "diff": "Hard"
+        }
+      ]
+    },
+    {
+      "name": "Round 5",
+      "questions": [
+        {
+          "q": "Which band recorded the song Bohemian Rhapsody?",
+          "opts": [
+            "Led Zeppelin",
+            "The Rolling Stones",
+            "Queen",
+            "The Who"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "What is the name of the school Harry Potter attends?",
+          "opts": [
+            "Hogsmeade",
+            "Hufflepuff",
+            "Horcrux",
+            "Hogwarts"
+          ],
+          "ans": 3,
+          "diff": "Easy"
+        },
+        {
+          "q": "Which is the largest continent by area?",
+          "opts": [
+            "Africa",
+            "Europe",
+            "North America",
+            "Asia"
+          ],
+          "ans": 3,
+          "diff": "Easy"
+        },
+        {
+          "q": "How many balls are bowled in a standard cricket over?",
+          "opts": [
+            "Four",
+            "Six",
+            "Eight",
+            "Ten"
+          ],
+          "ans": 1,
+          "diff": "Easy"
+        },
+        {
+          "q": "Which actor played Captain Jack Sparrow in the Pirates of the Caribbean films?",
+          "opts": [
+            "Orlando Bloom",
+            "Jude Law",
+            "Colin Farrell",
+            "Johnny Depp"
+          ],
+          "ans": 3,
+          "diff": "Medium"
+        },
+        {
+          "q": "Which river carved out the Grand Canyon over millions of years?",
+          "opts": [
+            "Missouri",
+            "Mississippi",
+            "Rio Grande",
+            "Colorado"
+          ],
+          "ans": 3,
+          "diff": "Medium"
+        },
+        {
+          "q": "What was the name of the ship on which Charles Darwin made his famous voyage of discovery?",
+          "opts": [
+            "HMS Victory",
+            "HMS Endeavour",
+            "HMS Discovery",
+            "HMS Beagle"
+          ],
+          "ans": 3,
+          "diff": "Medium"
+        },
+        {
+          "q": "How many Grand Slam singles titles did Pete Sampras win during his career?",
+          "opts": [
+            "10",
+            "12",
+            "14",
+            "16"
+          ],
+          "ans": 2,
+          "diff": "Hard"
+        },
+        {
+          "q": "Name the Italian town where Leonardo da Vinci was born in 1452.",
+          "opts": [
+            "Florence",
+            "Milan",
+            "Rome",
+            "Vinci"
+          ],
+          "ans": 3,
+          "diff": "Hard"
+        },
+        {
+          "q": "How many Academy Awards did the 1959 epic film Ben-Hur win at the 1960 ceremony?",
+          "opts": [
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
+          "ans": 2,
+          "diff": "Hard"
+        }
+      ]
+    },
+    {
+      "name": "Round 6",
+      "questions": [
+        {
+          "q": "What is the primary ingredient in guacamole?",
+          "opts": [
+            "Avocado",
+            "Mango",
+            "Tomato",
+            "Lime"
+          ],
+          "ans": 0,
+          "diff": "Easy"
+        },
+        {
+          "q": "How many keys does a standard full-size piano have?",
+          "opts": [
+            "66",
+            "76",
+            "88",
+            "96"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "In which sport would you score a try?",
+          "opts": [
+            "Rugby",
+            "Cricket",
+            "Tennis",
+            "Basketball"
+          ],
+          "ans": 0,
+          "diff": "Easy"
+        },
+        {
+          "q": "Which planet in our solar system is closest to the Sun?",
+          "opts": [
+            "Mercury",
+            "Venus",
+            "Mars",
+            "Earth"
+          ],
+          "ans": 0,
+          "diff": "Easy"
+        },
+        {
+          "q": "Which American city is widely regarded as the birthplace of jazz?",
+          "opts": [
+            "Chicago",
+            "Memphis",
+            "New York",
+            "New Orleans"
+          ],
+          "ans": 3,
+          "diff": "Medium"
+        },
+        {
+          "q": "Who wrote the novel Charlie and the Chocolate Factory?",
+          "opts": [
+            "A.A. Milne",
+            "Lewis Carroll",
+            "Enid Blyton",
+            "Roald Dahl"
+          ],
+          "ans": 3,
+          "diff": "Medium"
+        },
+        {
+          "q": "On which island does the Statue of Liberty stand?",
+          "opts": [
+            "Manhattan",
+            "Ellis Island",
+            "Governors Island",
+            "Liberty Island"
+          ],
+          "ans": 3,
+          "diff": "Medium"
+        },
+        {
+          "q": "Who was the first female Prime Minister of Israel?",
+          "opts": [
+            "Indira Gandhi",
+            "Benazir Bhutto",
+            "Margaret Thatcher",
+            "Golda Meir"
+          ],
+          "ans": 3,
+          "diff": "Medium"
+        },
+        {
+          "q": "Who directed the 1927 German science fiction film Metropolis?",
+          "opts": [
+            "F.W. Murnau",
+            "Ernst Lubitsch",
+            "G.W. Pabst",
+            "Fritz Lang"
+          ],
+          "ans": 3,
+          "diff": "Hard"
+        },
+        {
+          "q": "What is the approximate speed of sound in dry air at room temperature?",
+          "opts": [
+            "220 m/s",
+            "343 m/s",
+            "450 m/s",
+            "560 m/s"
+          ],
+          "ans": 1,
+          "diff": "Hard"
+        }
       ]
     }
   ]
