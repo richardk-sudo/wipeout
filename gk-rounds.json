@@ -353,6 +353,123 @@
     },
     {
       "name": "Round 4",
+      "icon": "🍽️",
+      "label": "Food & Drink",
+      "questions": [
+        {
+          "q": "Which fruit is the primary ingredient in guacamole?",
+          "opts": [
+            "Tomato",
+            "Mango",
+            "Avocado",
+            "Lime"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "From which country does Champagne originate?",
+          "opts": [
+            "France",
+            "Finland",
+            "Fiji",
+            "Faroe Islands"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "What type of pastry is used to make a croissant?",
+          "opts": [
+            "Filo",
+            "Shortcrust",
+            "Choux",
+            "Puff"
+          ],
+          "ans": 3,
+          "diff": "Easy"
+        },
+        {
+          "q": "Which spirit forms the base of a Margarita cocktail?",
+          "opts": [
+            "Rum",
+            "Vodka",
+            "Tequila",
+            "Gin"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "Which Italian city is credited with inventing pizza?",
+          "opts": [
+            "Rome",
+            "Milan",
+            "Venice",
+            "Naples"
+          ],
+          "ans": 3,
+          "diff": "Medium"
+        },
+        {
+          "q": "Name the Japanese dish of raw fish sliced and served without rice.",
+          "opts": [
+            "Sushi",
+            "Sashimi",
+            "Maki",
+            "Tempura"
+          ],
+          "ans": 1,
+          "diff": "Medium"
+        },
+        {
+          "q": "What type of wine is Chablis?",
+          "opts": [
+            "Red Burgundy",
+            "White Burgundy",
+            "Rosé Bordeaux",
+            "Sparkling Loire"
+          ],
+          "ans": 1,
+          "diff": "Medium"
+        },
+        {
+          "q": "What is the Scoville scale used to measure?",
+          "opts": [
+            "Acidity in wine",
+            "Sweetness in chocolate",
+            "Heat in chillies",
+            "Bitterness in coffee"
+          ],
+          "ans": 2,
+          "diff": "Hard"
+        },
+        {
+          "q": "Which chef accumulated the most Michelin stars during his career?",
+          "opts": [
+            "Gordon Ramsay",
+            "Heston Blumenthal",
+            "Joël Robuchon",
+            "Alain Ducasse"
+          ],
+          "ans": 2,
+          "diff": "Hard"
+        },
+        {
+          "q": "What is the name of the Japanese rice wine made by fermenting polished rice?",
+          "opts": [
+            "Soju",
+            "Baijiu",
+            "Sake",
+            "Shochu"
+          ],
+          "ans": 2,
+          "diff": "Hard"
+        }
+      ]
+    },
+    {
+      "name": "Round 5",
       "questions": [
         {
           "q": "On which continent is Egypt located?",
@@ -469,7 +586,7 @@
       "label": "Science & Nature"
     },
     {
-      "name": "Round 5",
+      "name": "Round 6",
       "questions": [
         {
           "q": "Which band recorded the song Bohemian Rhapsody?",
@@ -582,11 +699,139 @@
           "diff": "Hard"
         }
       ],
-      "icon": "⚡",
-      "label": "Speed Round"
+      "icon": "🧠",
+      "label": "General Knowledge"
     },
     {
-      "name": "Round 6",
+      "name": "Round 7",
+      "icon": "🎬",
+      "label": "Movies",
+      "questions": [
+        {
+          "q": "Which film features the line 'You're gonna need a bigger boat'?",
+          "opts": [
+            "Jaws",
+            "Star Wars",
+            "The Poseidon Adventure",
+            "Titanic"
+          ],
+          "ans": 0,
+          "diff": "Easy"
+        },
+        {
+          "q": "Who played Iron Man in the Marvel Cinematic Universe?",
+          "opts": [
+            "Chris Evans",
+            "Robert Downey Jr.",
+            "Chris Hemsworth",
+            "Mark Ruffalo"
+          ],
+          "ans": 1,
+          "diff": "Easy"
+        },
+        {
+          "q": "Which film franchise features wizards, Hogwarts and a boy with a lightning bolt scar?",
+          "opts": [
+            "The Chronicles of Narnia",
+            "Percy Jackson",
+            "Harry Potter",
+            "The Golden Compass"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "In which film does a young boy see dead people?",
+          "opts": [
+            "Poltergeist",
+            "The Shining",
+            "The Sixth Sense",
+            "Insidious"
+          ],
+          "ans": 2,
+          "diff": "Easy"
+        },
+        {
+          "q": "Which British actor played James Bond in Casino Royale (2006)?",
+          "opts": [
+            "Pierce Brosnan",
+            "Timothy Dalton",
+            "Daniel Craig",
+            "Clive Owen"
+          ],
+          "ans": 2,
+          "diff": "Medium"
+        },
+        {
+          "q": "What nationality is the director of Parasite, Bong Joon-ho?",
+          "opts": [
+            "Japanese",
+            "Chinese",
+            "South Korean",
+            "Thai"
+          ],
+          "ans": 2,
+          "diff": "Medium"
+        },
+        {
+          "q": "In which 1979 film does Sigourney Weaver battle an extraterrestrial creature aboard a spacecraft?",
+          "opts": [
+            "The Thing",
+            "Predator",
+            "Event Horizon",
+            "Alien"
+          ],
+          "ans": 3,
+          "diff": "Medium"
+        },
+        {
+          "q": "Which film won the first ever Academy Award for Best Picture in 1929?",
+          "opts": [
+            "Sunrise",
+            "Wings",
+            "The Jazz Singer",
+            "Metropolis"
+          ],
+          "ans": 1,
+          "diff": "Hard"
+        },
+        {
+          "q": "Which film won the Academy Award for Best Picture at the controversial 2017 ceremony where the wrong winner was announced?",
+          "opts": [
+            "La La Land",
+            "Moonlight",
+            "Manchester by the Sea",
+            "Hell or High Water"
+          ],
+          "ans": 1,
+          "diff": "Hard"
+        },
+        {
+          "q": "Name the director whose debut feature was Following, made in 1998 for just £6,000.",
+          "opts": [
+            "Danny Boyle",
+            "Christopher Nolan",
+            "Guy Ritchie",
+            "Edgar Wright"
+          ],
+          "ans": 1,
+          "diff": "Hard"
+        },
+        {
+          "q": "Which film won the first ever Academy Award for Best Picture, at the ceremony held in 1929?",
+          "opts": [
+            "Sunrise",
+            "Wings",
+            "The Jazz Singer",
+            "Metropolis"
+          ],
+          "ans": 1,
+          "diff": "Hard"
+        }
+      ]
+    },
+    {
+      "name": "Round 8",
       "questions": [
         {
           "q": "What is the primary ingredient in guacamole?",
@@ -699,8 +944,8 @@
           "diff": "Hard"
         }
       ],
-      "icon": "🏆",
-      "label": "The Final"
+      "icon": "🧠",
+      "label": "General Knowledge"
     }
   ]
 }
