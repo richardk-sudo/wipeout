@@ -113,7 +113,9 @@
           "ans": 1,
           "diff": "Hard"
         }
-      ]
+      ],
+      "icon": "🧠",
+      "label": "General Knowledge"
     },
     {
       "name": "Round 2",
@@ -228,7 +230,9 @@
           "ans": 2,
           "diff": "Hard"
         }
-      ]
+      ],
+      "icon": "🌍",
+      "label": "Around the World"
     },
     {
       "name": "Round 3",
@@ -343,7 +347,9 @@
           "ans": 3,
           "diff": "Hard"
         }
-      ]
+      ],
+      "icon": "🎬",
+      "label": "Arts & Culture"
     },
     {
       "name": "Round 4",
@@ -458,7 +464,9 @@
           "ans": 3,
           "diff": "Hard"
         }
-      ]
+      ],
+      "icon": "🔬",
+      "label": "Science & Nature"
     },
     {
       "name": "Round 5",
@@ -573,7 +581,9 @@
           "ans": 2,
           "diff": "Hard"
         }
-      ]
+      ],
+      "icon": "⚡",
+      "label": "Speed Round"
     },
     {
       "name": "Round 6",
@@ -688,7 +698,9 @@
           "ans": 1,
           "diff": "Hard"
         }
-      ]
+      ],
+      "icon": "🏆",
+      "label": "The Final"
     }
   ]
 }
