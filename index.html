@@ -735,7 +735,7 @@ function selectTopic(btn, topic) {
 }
 
 let cur, streak, timerInterval, timeLeft, answered;
-let endReason, endQ, endChosen, endTimeoutQ;
+let endReason, endQ, endChosen, endCorrect, endTimeoutQ;
 let questions, revealTimeout;
 
 function startGame() {
@@ -746,7 +746,7 @@ function startGame() {
     return;
   }
   cur = 0; streak = 0; answered = false;
-  endReason = null; endQ = null; endChosen = null;
+  endReason = null; endQ = null; endChosen = null; endCorrect = null;
   clearTimer();
   document.getElementById('start-screen').style.display = 'none';
   document.getElementById('result-screen').style.display = 'none';
@@ -874,6 +874,14 @@ async function pick(i) {
   } else {
     btns[i].className = 'opt-btn wrong';
     endReason = 'wrong'; endQ = q; endChosen = q.opts[i];
+    // Resolve correct answer text from hash
+    (async () => {
+      let correctText = '';
+      for (const opt of q.opts) {
+        if (await hashText(opt) === q.ans) { correctText = opt; break; }
+      }
+      endCorrect = correctText;
+    })();
     setTimeout(showResult, 900);
   }
 }
@@ -922,7 +930,7 @@ function showResult() {
     box.innerHTML = '<div class="timeout-icon">\u23F1</div><div class="timeout-heading">TIME\'S UP!</div><div class="timeout-body">You ran out of time on question ' + (endTimeoutQ + 1) + '.<br>Your score: <strong style="color:var(--gold)">' + streak + '</strong></div>';
   } else {
     box.className = 'end-reason wrong';
-    box.innerHTML = '<strong>Wrong answer!</strong>' + endQ.q + '<br>You answered: <em>' + endChosen + '</em> but the correct answer is: <strong>' + endQ.opts[endQ.ans] + '</strong>';
+    box.innerHTML = '<strong>Wrong answer!</strong>' + endQ.q + '<br>You answered: <em>' + endChosen + '</em> but the correct answer is: <strong>' + endCorrect + '</strong>';
   }
 }
 </script>
