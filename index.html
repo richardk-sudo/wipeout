@@ -37,7 +37,7 @@ html, body {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 5rem 1.5rem 2rem;
+  padding: clamp(1.25rem, 5vw, 5rem) clamp(0.875rem, 3vw, 1.5rem) 2rem;
 }
 
 body::before {
@@ -158,6 +158,7 @@ body::before {
   justify-content: center;
   gap: 4px;
   user-select: none;
+  touch-action: manipulation;
 }
 .carousel-card:hover { background: var(--panel2); border-color: var(--blue); }
 .carousel-card:active { transform: scale(0.98); }
@@ -211,6 +212,7 @@ body::before {
   transition: background 0.15s, transform 0.1s, opacity 0.15s;
   flex-shrink: 0;
   font-weight: 700;
+  touch-action: manipulation;
 }
 .carousel-arrow:hover { background: #3d8bff; transform: scale(1.08); }
 .carousel-arrow:active { transform: scale(0.96); }
@@ -354,6 +356,7 @@ body::before {
   display: flex;
   align-items: center;
   gap: 12px;
+  touch-action: manipulation;
 }
 
 .opt-letter {
@@ -474,16 +477,127 @@ body::before {
   border: none;
   border-radius: var(--radius);
   font-family: var(--font-display);
-  font-size: 31px;
+  font-size: clamp(22px, 5vw, 31px);
   font-weight: 700;
   letter-spacing: 4px;
   color: white;
   cursor: pointer;
   transition: background 0.15s, transform 0.1s;
   text-transform: uppercase;
+  /* Ensure good tap target */
+  min-height: 56px;
+  touch-action: manipulation;
 }
 .play-again-btn:hover { background: #2275ff; }
 .play-again-btn:active { transform: scale(0.99); }
+
+/* ── RESPONSIVE: MOBILE (≤480px) ── */
+@media (max-width: 480px) {
+  :root { --radius: 6px; }
+
+  /* Loading */
+  #loading-screen { padding-top: 2rem; }
+  .loading-sub { font-size: 14px; letter-spacing: 2px; }
+
+  /* Start screen */
+  .logo-sub { font-size: 15px; letter-spacing: 2px; margin-bottom: 1.5rem; }
+  .divider { margin-bottom: 1.25rem; }
+
+  /* Rules card */
+  .rules-card { margin-bottom: 1rem; }
+  .rule-row { padding: 0.75rem 1rem; gap: 12px; }
+  .rule-icon { font-size: 18px; width: 18px; }
+  .rule-title { font-size: 17px; margin-bottom: 2px; }
+  .rule-desc { font-size: 14px; line-height: 1.5; }
+
+  /* Topic label */
+  .topic-label { font-size: 14px; margin: 1.25rem 0 0.875rem; letter-spacing: 1.5px; }
+
+  /* Carousel cards */
+  .carousel-page {
+    grid-template-rows: auto auto;
+    gap: 8px;
+  }
+  .carousel-card {
+    height: auto;
+    min-height: 72px;
+    padding: 14px 12px;
+  }
+  .carousel-card-icon { font-size: 22px; }
+  .carousel-card-label { font-size: 16px; }
+  .carousel-card-num { font-size: 10px; letter-spacing: 1.5px; }
+  .carousel-card-body { gap: 8px; }
+
+  /* Carousel nav */
+  .carousel-nav { gap: 14px; margin-top: 12px; }
+  .carousel-arrow { width: 44px; height: 44px; font-size: 18px; }
+
+  /* HUD */
+  .hud { padding: 0.6rem 0.875rem; margin-bottom: 0.75rem; }
+  .hud-left { gap: 6px; }
+  .streak-num { font-size: 36px; }
+  .streak-lbl { font-size: 14px; }
+  .diff-pill { font-size: 14px; padding: 2px 7px; }
+  .q-counter { font-size: 14px; }
+
+  /* Timer */
+  .timer-section { margin-bottom: 0.75rem; }
+  .timer-label { font-size: 11px; letter-spacing: 1px; }
+  .timer-count { font-size: 28px; min-width: 24px; }
+
+  /* Question card */
+  .question-card { padding: 1.1rem 1rem; margin-bottom: 0.75rem; }
+  .q-ghost,
+  .q-typed { font-size: 18px; line-height: 1.5; }
+
+  /* Answer options — stack to single column on very small screens */
+  .options { grid-template-columns: 1fr; gap: 8px; }
+  .opt-btn { font-size: 15px; padding: 12px 14px; gap: 10px; }
+  .opt-letter { font-size: 16px; width: 26px; height: 26px; }
+
+  /* Result screen */
+  .result-logo { font-size: 26px; letter-spacing: 2px; margin-bottom: 1rem; }
+  .result-card { padding: 1.5rem 1.25rem; margin-bottom: 0.875rem; }
+  .result-pre { font-size: 14px; letter-spacing: 1.5px; }
+  .result-sub { font-size: 14px; margin-bottom: 1rem; }
+  .result-msg { font-size: 15px; line-height: 1.6; }
+
+  .end-reason { font-size: 14px; padding: 1rem 1.1rem; line-height: 1.6; margin-bottom: 0.875rem; }
+  .end-reason strong { font-size: 14px; }
+  .timeout-icon { font-size: 36px; }
+  .timeout-heading { font-size: 34px; letter-spacing: 2px; }
+  .timeout-body { font-size: 15px; }
+
+  .play-again-btn { padding: 15px; letter-spacing: 3px; }
+}
+
+/* ── RESPONSIVE: SMALL-MID (481px–640px) ── */
+@media (min-width: 481px) and (max-width: 640px) {
+  .rule-title { font-size: 18px; }
+  .rule-desc { font-size: 16px; }
+  .q-ghost,
+  .q-typed { font-size: 22px; }
+  .opt-btn { font-size: 17px; }
+  .streak-num { font-size: 42px; }
+  .timer-count { font-size: 32px; }
+  .carousel-card { min-height: 88px; height: auto; padding: 16px 14px; }
+  .carousel-card-label { font-size: 19px; }
+}
+
+/* ── RESPONSIVE: DESKTOP (≥768px) ── */
+@media (min-width: 768px) {
+  /* Slightly more breathing room at large sizes */
+  .hud { padding: 1rem 1.5rem; }
+  .question-card { padding: 2rem; }
+  .result-card { padding: 3rem 2.5rem; }
+
+  /* On wider screens the option 2-col grid works great — keep it */
+  .options { gap: 12px; }
+
+  /* Carousel cards can be a touch taller for better visual weight */
+  .carousel-card { min-height: 110px; }
+}
+
 </style>
 </head>
 <body>
