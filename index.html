@@ -687,16 +687,6 @@ async function loadAllSheets() {
   document.getElementById('start-screen').style.display = 'block';
 
   try {
-    const gkRes = await fetch('gk-rounds.json');
-    if (gkRes.ok) {
-      const gkData = await gkRes.json();
-      if (gkData && gkData.rounds && gkData.rounds.length > 0) {
-        buildCarousel(gkData);
-      }
-    }
-  } catch(e) { /* Live data unavailable */ }
-
-  try {
     const res = await fetch('questions.json');
     if (res.ok) {
       const topicData = await res.json();
